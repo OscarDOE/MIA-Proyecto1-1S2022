@@ -1,0 +1,11 @@
+Mkdisk -size=50 -unit=M -path=/home/oscar/Descargas/Disco1.disk -fit=FF
+Mkdisk -unit=k -size=51200 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+mkDisk -size=10 -path=/home/oscar/Descargas/Disco3.disk
+mkdisk -size=51200 -path="/home/oscar/Descargas/Disco4.disk" -unit=K
+mkDisk -size=20 -path="/home/oscar/Descargas/Disco5.disk" -unit=M -fit=WF
+
+pause
+fdisk -type=P -unit=K -name=Part1 -size=7680 -path=/home/oscar/Descargas/Disco1.disk -fit=BF 
+
+mount -path=/home/oscar/Descargas/Disco1disk -name=Part1S
+mkfs -id=631a

@@ -678,11 +678,11 @@ static const char *const yytname[] =
   "Tuser", "Tpwd", "Tgrp", "Ttouch", "Tcont", "Tstdin", "Tr", "Tloss",
   "num", "cadena", "cadena2", "cadena3", "cadena4", "cadena5",
   "identificador", "ide2", "ide3", "caracter", "guion", "igual", "$accept",
-  "INICIO", "LEX", "COM_EXEC", "COM_MKDISK", "COM_RMDISK", "COM_FDISK",
-  "COM_MOUNT", "COM_UMOUNT", "COM_MKFS", "COM_REP", "COM_LOGIN",
-  "COM_MKGRP", "COM_MKUSR", "COM_CHGRP", "COM_TOUCH", "COM_LOSS", "PATH",
-  "NAME", "IDS", "PWD", "TYPES", "TIPO_AJUSTE", "TIPO_UNIDAD",
-  "TIPO_DELETEoTYPES", "TIPO_REP", "TIPO_SISTEMA", YY_NULLPTR
+  "INICIO", "INSTRUCCIONES", "_EXEC", "_MKDISK", "_RMDISK", "_FDISK",
+  "_MOUNT", "_UMOUNT", "_MKFS", "_REP", "_LOGIN", "_MKGRP", "_MKUSR",
+  "_CHGRP", "_TOUCH", "_LOSS", "PATH", "NAME", "INS", "PWD", "TYPES",
+  "TIPO_AJUSTE", "TIPO_UNIDAD", "TIPO_DELETEoTYPES", "TIPO_REP",
+  "TIPO_SISTEMA", YY_NULLPTR
 };
 #endif
 
@@ -1741,61 +1741,61 @@ yyreduce:
     {
   case 2:
 #line 187 "parser.y"
-             { }
+                       { }
 #line 1746 "parser.cpp"
     break;
 
   case 3:
 #line 190 "parser.y"
-                               {(yyvsp[0].objmkdisk)->CrearMkdisk((yyvsp[0].objmkdisk));}
+                                      {(yyvsp[0].objmkdisk)->CrearMkdisk((yyvsp[0].objmkdisk));}
 #line 1752 "parser.cpp"
     break;
 
   case 4:
 #line 191 "parser.y"
-                                {(yyvsp[0].objrmdisk)->EliminarDisco((yyvsp[0].objrmdisk));}
+                             {(yyvsp[0].objrmdisk)->EliminarDisco((yyvsp[0].objrmdisk));}
 #line 1758 "parser.cpp"
     break;
 
   case 5:
 #line 192 "parser.y"
-                              {(yyvsp[0].objfdisk)->AdmiDisco((yyvsp[0].objfdisk));}
+                           {(yyvsp[0].objfdisk)->AdmiDisco((yyvsp[0].objfdisk));}
 #line 1764 "parser.cpp"
     break;
 
   case 6:
 #line 193 "parser.y"
-                             {(yyvsp[0].objmount)->MontarParticion((yyvsp[0].objmount));}
+                          {(yyvsp[0].objmount)->MontarParticion((yyvsp[0].objmount));}
 #line 1770 "parser.cpp"
     break;
 
   case 7:
 #line 194 "parser.y"
-                               {(yyvsp[0].objumount)->DesmontarParticion((yyvsp[0].objumount));}
+                            {(yyvsp[0].objumount)->DesmontarParticion((yyvsp[0].objumount));}
 #line 1776 "parser.cpp"
     break;
 
   case 8:
 #line 195 "parser.y"
-                           {(yyvsp[0].objmkfs)->FormatoMkfs((yyvsp[0].objmkfs));}
+                        {(yyvsp[0].objmkfs)->FormatoMkfs((yyvsp[0].objmkfs));}
 #line 1782 "parser.cpp"
     break;
 
   case 9:
 #line 196 "parser.y"
-                           {(yyvsp[0].objexec)->ejecutar((yyvsp[0].objexec));}
+                        {(yyvsp[0].objexec)->ejecutar((yyvsp[0].objexec));}
 #line 1788 "parser.cpp"
     break;
 
   case 10:
 #line 197 "parser.y"
-                         {(yyvsp[0].objrep)->CrearRep((yyvsp[0].objrep));}
+                      {(yyvsp[0].objrep)->CrearRep((yyvsp[0].objrep));}
 #line 1794 "parser.cpp"
     break;
 
   case 11:
 #line 198 "parser.y"
-                             {(yyvsp[0].objlogin)->Login((yyvsp[0].objlogin));}
+                          {(yyvsp[0].objlogin)->Login((yyvsp[0].objlogin));}
 #line 1800 "parser.cpp"
     break;
 
@@ -1807,43 +1807,43 @@ yyreduce:
 
   case 13:
 #line 200 "parser.y"
-                             {(yyvsp[0].objmkgrp)->crearGrupo((yyvsp[0].objmkgrp));}
+                          {(yyvsp[0].objmkgrp)->crearGrupo((yyvsp[0].objmkgrp));}
 #line 1812 "parser.cpp"
     break;
 
   case 14:
 #line 201 "parser.y"
-                             {(yyvsp[0].objmkgrp)->eliminarGrupo((yyvsp[0].objmkgrp));}
+                          {(yyvsp[0].objmkgrp)->eliminarGrupo((yyvsp[0].objmkgrp));}
 #line 1818 "parser.cpp"
     break;
 
   case 15:
 #line 202 "parser.y"
-                             {(yyvsp[0].objmkusr)->crearUsuario((yyvsp[0].objmkusr));}
+                          {(yyvsp[0].objmkusr)->crearUsuario((yyvsp[0].objmkusr));}
 #line 1824 "parser.cpp"
     break;
 
   case 16:
 #line 203 "parser.y"
-                             {(yyvsp[0].objmkusr)->eliminarUsuario((yyvsp[0].objmkusr));}
+                          {(yyvsp[0].objmkusr)->eliminarUsuario((yyvsp[0].objmkusr));}
 #line 1830 "parser.cpp"
     break;
 
   case 17:
 #line 204 "parser.y"
-                             {(yyvsp[0].objchgrp)->cambiarGrupo((yyvsp[0].objchgrp));}
+                          {(yyvsp[0].objchgrp)->cambiarGrupo((yyvsp[0].objchgrp));}
 #line 1836 "parser.cpp"
     break;
 
   case 18:
 #line 205 "parser.y"
-                             {}
+                          {}
 #line 1842 "parser.cpp"
     break;
 
   case 19:
 #line 206 "parser.y"
-                           {(yyvsp[0].objloss)->lossPart((yyvsp[0].objloss));}
+                        {(yyvsp[0].objloss)->lossPart((yyvsp[0].objloss));}
 #line 1848 "parser.cpp"
     break;
 
@@ -1861,7 +1861,7 @@ yyreduce:
 
   case 22:
 #line 215 "parser.y"
-                                             {int tam=atoi((yyvsp[0].TEXT)); (yyvsp[-4].objmkdisk)->size=tam; (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
+                                          {int tam=atoi((yyvsp[0].TEXT)); (yyvsp[-4].objmkdisk)->size=tam; (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
 #line 1866 "parser.cpp"
     break;
 
@@ -1873,7 +1873,7 @@ yyreduce:
 
   case 24:
 #line 217 "parser.y"
-                                               {(yyvsp[-4].objmkdisk)->ruta=(yyvsp[0].TEXT); (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
+                                            {(yyvsp[-4].objmkdisk)->ruta=(yyvsp[0].TEXT); (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
 #line 1878 "parser.cpp"
     break;
 
@@ -1885,7 +1885,7 @@ yyreduce:
 
   case 26:
 #line 219 "parser.y"
-                                                   {(yyvsp[-4].objmkdisk)->ajuste=(yyvsp[0].TEXT); (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
+                                                {(yyvsp[-4].objmkdisk)->ajuste=(yyvsp[0].TEXT); (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
 #line 1890 "parser.cpp"
     break;
 
@@ -1897,7 +1897,7 @@ yyreduce:
 
   case 28:
 #line 221 "parser.y"
-                                                   {(yyvsp[-4].objmkdisk)->unidad=(yyvsp[0].TEXT); (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
+                                                {(yyvsp[-4].objmkdisk)->unidad=(yyvsp[0].TEXT); (yyval.objmkdisk)=(yyvsp[-4].objmkdisk);}
 #line 1902 "parser.cpp"
     break;
 
@@ -1915,7 +1915,7 @@ yyreduce:
 
   case 31:
 #line 230 "parser.y"
-                                            {int tam=atoi((yyvsp[0].TEXT)); (yyvsp[-4].objfdisk)->size=tam; (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                         {int tam=atoi((yyvsp[0].TEXT)); (yyvsp[-4].objfdisk)->size=tam; (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 1920 "parser.cpp"
     break;
 
@@ -1927,7 +1927,7 @@ yyreduce:
 
   case 33:
 #line 232 "parser.y"
-                                                  {(yyvsp[-4].objfdisk)->unidad=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                               {(yyvsp[-4].objfdisk)->unidad=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 1932 "parser.cpp"
     break;
 
@@ -1939,7 +1939,7 @@ yyreduce:
 
   case 35:
 #line 234 "parser.y"
-                                              {(yyvsp[-4].objfdisk)->ruta=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                           {(yyvsp[-4].objfdisk)->ruta=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 1944 "parser.cpp"
     break;
 
@@ -1951,7 +1951,7 @@ yyreduce:
 
   case 37:
 #line 236 "parser.y"
-                                              {(yyvsp[-4].objfdisk)->tipo=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                           {(yyvsp[-4].objfdisk)->tipo=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 1956 "parser.cpp"
     break;
 
@@ -1963,7 +1963,7 @@ yyreduce:
 
   case 39:
 #line 238 "parser.y"
-                                                  {(yyvsp[-4].objfdisk)->ajuste=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                               {(yyvsp[-4].objfdisk)->ajuste=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 1968 "parser.cpp"
     break;
 
@@ -1975,7 +1975,7 @@ yyreduce:
 
   case 41:
 #line 240 "parser.y"
-                                                             {(yyvsp[-4].objfdisk)->eliminar=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                                          {(yyvsp[-4].objfdisk)->eliminar=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 1980 "parser.cpp"
     break;
 
@@ -1987,7 +1987,7 @@ yyreduce:
 
   case 43:
 #line 243 "parser.y"
-                                     {(yyvsp[-2].objfdisk)->eliminar="FAST"; (yyval.objfdisk)=(yyvsp[-2].objfdisk);}
+                                  {(yyvsp[-2].objfdisk)->eliminar="FAST"; (yyval.objfdisk)=(yyvsp[-2].objfdisk);}
 #line 1992 "parser.cpp"
     break;
 
@@ -1999,7 +1999,7 @@ yyreduce:
 
   case 45:
 #line 246 "parser.y"
-                                              {(yyvsp[-4].objfdisk)->nombre=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                           {(yyvsp[-4].objfdisk)->nombre=(yyvsp[0].TEXT); (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 2004 "parser.cpp"
     break;
 
@@ -2011,7 +2011,7 @@ yyreduce:
 
   case 47:
 #line 248 "parser.y"
-                                            {int tam=atoi((yyvsp[0].TEXT));(yyvsp[-4].objfdisk)->agregar=tam; (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
+                                         {int tam=atoi((yyvsp[0].TEXT));(yyvsp[-4].objfdisk)->agregar=tam; (yyval.objfdisk)=(yyvsp[-4].objfdisk);}
 #line 2016 "parser.cpp"
     break;
 
@@ -2023,7 +2023,7 @@ yyreduce:
 
   case 49:
 #line 253 "parser.y"
-                                            {(yyvsp[-4].objmount)->ruta=(yyvsp[0].TEXT); (yyval.objmount)=(yyvsp[-4].objmount);}
+                                         {(yyvsp[-4].objmount)->ruta=(yyvsp[0].TEXT); (yyval.objmount)=(yyvsp[-4].objmount);}
 #line 2028 "parser.cpp"
     break;
 
@@ -2035,7 +2035,7 @@ yyreduce:
 
   case 51:
 #line 255 "parser.y"
-                                              {(yyvsp[-4].objmount)->nombre=(yyvsp[0].TEXT); (yyval.objmount)=(yyvsp[-4].objmount);}
+                                           {(yyvsp[-4].objmount)->nombre=(yyvsp[0].TEXT); (yyval.objmount)=(yyvsp[-4].objmount);}
 #line 2040 "parser.cpp"
     break;
 
@@ -2053,7 +2053,7 @@ yyreduce:
 
   case 54:
 #line 264 "parser.y"
-                                        {(yyvsp[-4].objmkfs)->id= (yyvsp[0].TEXT); (yyval.objmkfs)=(yyvsp[-4].objmkfs);}
+                                     {(yyvsp[-4].objmkfs)->id= (yyvsp[0].TEXT); (yyval.objmkfs)=(yyvsp[-4].objmkfs);}
 #line 2058 "parser.cpp"
     break;
 
@@ -2065,7 +2065,7 @@ yyreduce:
 
   case 56:
 #line 266 "parser.y"
-                                                         {(yyvsp[-4].objmkfs)->tipo= (yyvsp[0].TEXT); (yyval.objmkfs)=(yyvsp[-4].objmkfs);}
+                                                      {(yyvsp[-4].objmkfs)->tipo= (yyvsp[0].TEXT); (yyval.objmkfs)=(yyvsp[-4].objmkfs);}
 #line 2070 "parser.cpp"
     break;
 
@@ -2077,7 +2077,7 @@ yyreduce:
 
   case 58:
 #line 268 "parser.y"
-                                                  {(yyvsp[-4].objmkfs)->fs= (yyvsp[0].TEXT); (yyval.objmkfs)=(yyvsp[-4].objmkfs);}
+                                               {(yyvsp[-4].objmkfs)->fs= (yyvsp[0].TEXT); (yyval.objmkfs)=(yyvsp[-4].objmkfs);}
 #line 2082 "parser.cpp"
     break;
 
@@ -2089,7 +2089,7 @@ yyreduce:
 
   case 60:
 #line 274 "parser.y"
-                                               {(yyvsp[-4].objrep)->nombre= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);}
+                                            {(yyvsp[-4].objrep)->nombre= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);}
 #line 2094 "parser.cpp"
     break;
 
@@ -2101,19 +2101,19 @@ yyreduce:
 
   case 62:
 #line 276 "parser.y"
-                                            {(yyvsp[-4].objrep)->ruta= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);printf("INICIO PRIMERO");printf((yyvsp[-4].objrep).c_str());printf((yyvsp[-2].TEXT).c_str());printf("FINAL PRIMERO");}
+                                         {(yyvsp[-4].objrep)->ruta= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);}
 #line 2106 "parser.cpp"
     break;
 
   case 63:
 #line 277 "parser.y"
-                                    {rep *reporte = new rep(); reporte->ruta = (yyvsp[0].TEXT); (yyval.objrep)=reporte;printf("INICIO SEGUNDO");printf((yyvsp[-2].TEXT).c_str());printf((yyvsp[0].TEXT).c_str());printf("FINAL SEGUNDO");}
+                                    {rep *reporte = new rep(); reporte->ruta = (yyvsp[0].TEXT); (yyval.objrep)=reporte;}
 #line 2112 "parser.cpp"
     break;
 
   case 64:
 #line 278 "parser.y"
-                                         {(yyvsp[-4].objrep)->id= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);}
+                                      {(yyvsp[-4].objrep)->id= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);}
 #line 2118 "parser.cpp"
     break;
 
@@ -2125,7 +2125,7 @@ yyreduce:
 
   case 66:
 #line 280 "parser.y"
-                                            {(yyvsp[-4].objrep)->ruta= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);}
+                                         {(yyvsp[-4].objrep)->ruta= (yyvsp[0].TEXT); (yyval.objrep)=(yyvsp[-4].objrep);}
 #line 2130 "parser.cpp"
     break;
 
@@ -2137,7 +2137,7 @@ yyreduce:
 
   case 68:
 #line 282 "parser.y"
-                                           {int tam=atoi((yyvsp[0].TEXT));(yyvsp[-4].objrep)->root=tam; (yyval.objrep)=(yyvsp[-4].objrep);}
+                                        {int tam=atoi((yyvsp[0].TEXT));(yyvsp[-4].objrep)->root=tam; (yyval.objrep)=(yyvsp[-4].objrep);}
 #line 2142 "parser.cpp"
     break;
 
@@ -2149,7 +2149,7 @@ yyreduce:
 
   case 70:
 #line 288 "parser.y"
-                                          {(yyvsp[-4].objlogin)->id= (yyvsp[0].TEXT); (yyval.objlogin)=(yyvsp[-4].objlogin);}
+                                       {(yyvsp[-4].objlogin)->id= (yyvsp[0].TEXT); (yyval.objlogin)=(yyvsp[-4].objlogin);}
 #line 2154 "parser.cpp"
     break;
 
@@ -2161,7 +2161,7 @@ yyreduce:
 
   case 72:
 #line 290 "parser.y"
-                                            {(yyvsp[-4].objlogin)->pwd= (yyvsp[0].TEXT); (yyval.objlogin)=(yyvsp[-4].objlogin);}
+                                         {(yyvsp[-4].objlogin)->pwd= (yyvsp[0].TEXT); (yyval.objlogin)=(yyvsp[-4].objlogin);}
 #line 2166 "parser.cpp"
     break;
 
@@ -2173,7 +2173,7 @@ yyreduce:
 
   case 74:
 #line 292 "parser.y"
-                                             {(yyvsp[-4].objlogin)->user= (yyvsp[0].TEXT); (yyval.objlogin)=(yyvsp[-4].objlogin);}
+                                          {(yyvsp[-4].objlogin)->user= (yyvsp[0].TEXT); (yyval.objlogin)=(yyvsp[-4].objlogin);}
 #line 2178 "parser.cpp"
     break;
 
@@ -2191,7 +2191,7 @@ yyreduce:
 
   case 77:
 #line 301 "parser.y"
-                                            {(yyvsp[-4].objmkusr)->usr=(yyvsp[0].TEXT); (yyval.objmkusr)=(yyvsp[-4].objmkusr);}
+                                         {(yyvsp[-4].objmkusr)->usr=(yyvsp[0].TEXT); (yyval.objmkusr)=(yyvsp[-4].objmkusr);}
 #line 2196 "parser.cpp"
     break;
 
@@ -2203,7 +2203,7 @@ yyreduce:
 
   case 79:
 #line 303 "parser.y"
-                                            {(yyvsp[-4].objmkusr)->pwd=(yyvsp[0].TEXT); (yyval.objmkusr)=(yyvsp[-4].objmkusr);}
+                                         {(yyvsp[-4].objmkusr)->pwd=(yyvsp[0].TEXT); (yyval.objmkusr)=(yyvsp[-4].objmkusr);}
 #line 2208 "parser.cpp"
     break;
 
@@ -2215,7 +2215,7 @@ yyreduce:
 
   case 81:
 #line 305 "parser.y"
-                                             {(yyvsp[-4].objmkusr)->grp=(yyvsp[0].TEXT); (yyval.objmkusr)=(yyvsp[-4].objmkusr);}
+                                          {(yyvsp[-4].objmkusr)->grp=(yyvsp[0].TEXT); (yyval.objmkusr)=(yyvsp[-4].objmkusr);}
 #line 2220 "parser.cpp"
     break;
 
@@ -2227,7 +2227,7 @@ yyreduce:
 
   case 83:
 #line 311 "parser.y"
-                                            {(yyvsp[-4].objchgrp)->usr=(yyvsp[0].TEXT); (yyval.objchgrp)=(yyvsp[-4].objchgrp);}
+                                         {(yyvsp[-4].objchgrp)->usr=(yyvsp[0].TEXT); (yyval.objchgrp)=(yyvsp[-4].objchgrp);}
 #line 2232 "parser.cpp"
     break;
 
@@ -2239,7 +2239,7 @@ yyreduce:
 
   case 85:
 #line 313 "parser.y"
-                                             {(yyvsp[-4].objchgrp)->grp=(yyvsp[0].TEXT); (yyval.objchgrp)=(yyvsp[-4].objchgrp);}
+                                          {(yyvsp[-4].objchgrp)->grp=(yyvsp[0].TEXT); (yyval.objchgrp)=(yyvsp[-4].objchgrp);}
 #line 2244 "parser.cpp"
     break;
 
@@ -2251,7 +2251,7 @@ yyreduce:
 
   case 87:
 #line 318 "parser.y"
-                                            {}
+                                         {}
 #line 2256 "parser.cpp"
     break;
 
@@ -2263,7 +2263,7 @@ yyreduce:
 
   case 89:
 #line 320 "parser.y"
-                                {}
+                             {}
 #line 2268 "parser.cpp"
     break;
 
@@ -2275,7 +2275,7 @@ yyreduce:
 
   case 91:
 #line 322 "parser.y"
-                                             {}
+                                          {}
 #line 2280 "parser.cpp"
     break;
 
@@ -2287,7 +2287,7 @@ yyreduce:
 
   case 93:
 #line 324 "parser.y"
-                                            {}
+                                         {}
 #line 2292 "parser.cpp"
     break;
 
@@ -2299,7 +2299,7 @@ yyreduce:
 
   case 95:
 #line 326 "parser.y"
-                                   {}
+                                {}
 #line 2304 "parser.cpp"
     break;
 

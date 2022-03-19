@@ -16,48 +16,6 @@ vector <string> listaGrupo(30);
 vector <string> listaUsaurio(60);
 
 
-int NumeroIdGrupo(string path){
-    FILE *archivo = fopen(path.c_str(), "rb+");
-    SuperBloque super;
-    TablaInodo inodo;
-    char usuarios[400] = "\0";
-    fseek(archivo, inicio.start_super, SEEK_SET);
-    fread(&super, sizeof(SuperBloque), 1, archivo);
-    fseek(archivo, super.s_inodo_init+int(sizeof(TablaInodo)), SEEK_SET);
-    fread(&inodo, sizeof(TablaInodo), 1, archivo);
-    for (int i = 0; i < 15; i++) {
-        if(inodo.i_bloque[i]!=-1){
-            BloqueArchivo blockfile;
-            fseek(archivo, super.s_bloque_init, SEEK_SET);
-            for (int x = 0; x <= inodo.i_bloque[i]; x++) {
-                fread(&blockfile, 64, 1, archivo);
-
-            }
-            strcat(usuarios, blockfile.b_archivo);
-        }
-    }\
-    fclose(archivo);
-
-    char *final1;
-    char *tok = strtok_r(usuarios,"\n", &final1);
-    int aux = 0;
-    while(tok != nullptr){
-        char id[2];
-        char tipo[2];
-        char *final2;
-        char *tok2 = strtok_r(tok, ",", &final2);
-        strcpy(id, tok2);
-        if (strcmp(id,"0")!=0){
-            tok2 = strtok_r(nullptr, ",", &final2);
-            strcpy(tipo, tok2);
-            if(strcmp(tipo,"G")==0){
-                aux = atoi(id);
-            }
-        }
-        tok = strtok_r(nullptr, "\n", &final1);
-    }
-    return ++aux;
-}
 
 int NumeroIdUsuario(string path){
     FILE *archivo = fopen(path.c_str(), "rb+");
@@ -102,94 +60,6 @@ int NumeroIdUsuario(string path){
         tok = strtok_r(nullptr, "\n", &final1);
     }
     return ++aux;
-}
-
-void generarListaGrupo(string path){
-    listaGrupo.clear();
-    FILE *archivo = fopen(path.c_str(), "rb+");
-    SuperBloque super;
-    TablaInodo inodo;
-    char usuarios[400] = "\0";
-    fseek(archivo, inicio.start_super, SEEK_SET);
-    fread(&super, sizeof(SuperBloque), 1, archivo);
-    fseek(archivo, super.s_inodo_init+int(sizeof(TablaInodo)), SEEK_SET);
-    fread(&inodo, sizeof(TablaInodo), 1, archivo);
-    for (int i = 0; i < 15; i++) {
-        if(inodo.i_bloque[i]!=-1){
-            BloqueArchivo blockfile;
-            fseek(archivo, super.s_bloque_init, SEEK_SET);
-            for (int x = 0; x <= inodo.i_bloque[i]; x++) {
-                fread(&blockfile, 64, 1, archivo);
-
-            }
-            strcat(usuarios, blockfile.b_archivo);
-        }
-    }
-    fclose(archivo);
-    char *final1;
-    char *tok = strtok_r(usuarios,"\n", &final1);
-
-    while(tok != nullptr){
-        char id[2];
-        char tipo[2];
-        char *final2;
-        char *tok2 = strtok_r(tok, ",", &final2);
-        strcpy(id, tok2);
-        if (strcmp(id,"0")!=0){
-            tok2 = strtok_r(nullptr, ",", &final2);
-            strcpy(tipo, tok2);
-            if(strcmp(tipo,"G")==0){
-                tok2 = strtok_r(nullptr, ",", &final2);
-                listaGrupo.push_back(tok2);
-            }
-        }
-        tok = strtok_r(nullptr, "\n", &final1);
-    }
-}
-
-void generarListaUsuario(string path){
-    listaUsaurio.clear();
-    FILE *archivo = fopen(path.c_str(), "rb+");
-    SuperBloque super;
-    TablaInodo inodo;
-    char usuarios[400] = "\0";
-    fseek(archivo, inicio.start_super, SEEK_SET);
-    fread(&super, sizeof(SuperBloque), 1, archivo);
-    fseek(archivo, super.s_inodo_init+int(sizeof(TablaInodo)), SEEK_SET);
-    fread(&inodo, sizeof(TablaInodo), 1, archivo);
-
-    for (int i = 0; i < 15; i++) {
-        if(inodo.i_bloque[i]!=-1){
-            BloqueArchivo blockfile;
-            fseek(archivo, super.s_bloque_init, SEEK_SET);
-            for (int x = 0; x <= inodo.i_bloque[i]; x++) {
-                fread(&blockfile, 64, 1, archivo);
-
-            }
-            strcat(usuarios, blockfile.b_archivo);
-        }
-    }
-    fclose(archivo);
-    char *final1;
-    char *tok = strtok_r(usuarios,"\n", &final1);
-
-    while(tok != nullptr){
-        char id[2];
-        char tipo[2];
-        char *final2;
-        char *tok2 = strtok_r(tok, ",", &final2);
-        strcpy(id, tok2);
-        if (strcmp(id,"0")!=0){
-            tok2 = strtok_r(nullptr, ",", &final2);
-            strcpy(tipo, tok2);
-            if(strcmp(tipo,"U")==0){
-                tok2 = strtok_r(nullptr, ",", &final2);
-                tok2 = strtok_r(nullptr, ",", &final2);
-                listaUsaurio.push_back(tok2);
-            }
-        }
-        tok = strtok_r(nullptr, "\n", &final1);
-    }
 }
 
 int Logeando(string user, string pwd, string ruta){
@@ -302,7 +172,46 @@ void login::Login(login *usuario){
                     fclose(archivo);
                     inicio.start_super = master.particiones[NParticion].p_comienzo;
                     int resultado = Logeando(usuario->user,usuario->pwd,aux->ruta);
-                    generarListaGrupo(aux->ruta);
+                    listaGrupo.clear();
+                    FILE *archivo = fopen(aux->ruta.c_str(), "rb+");
+                    SuperBloque superaux;
+                    TablaInodo inodoaux;
+                    char usuarios[400] = "\0";
+                    fseek(archivo, inicio.start_super, SEEK_SET);
+                    fread(&superaux, sizeof(SuperBloque), 1, archivo);
+                    fseek(archivo, superaux.s_inodo_init+int(sizeof(TablaInodo)), SEEK_SET);
+                    fread(&inodoaux, sizeof(TablaInodo), 1, archivo);
+                    for (int i = 0; i < 15; i++) {
+                        if(inodoaux.i_bloque[i]!=-1){
+                            BloqueArchivo blockfile;
+                            fseek(archivo, superaux.s_bloque_init, SEEK_SET);
+                            for (int x = 0; x <= inodoaux.i_bloque[i]; x++) {
+                                fread(&blockfile, 64, 1, archivo);
+
+                            }
+                            strcat(usuarios, blockfile.b_archivo);
+                        }
+                    }
+                    fclose(archivo);
+                    char *final1;
+                    char *tok = strtok_r(usuarios,"\n", &final1);
+
+                    while(tok != nullptr){
+                        char id[2];
+                        char tipo[2];
+                        char *final2;
+                        char *tok2 = strtok_r(tok, ",", &final2);
+                        strcpy(id, tok2);
+                        if (strcmp(id,"0")!=0){
+                            tok2 = strtok_r(nullptr, ",", &final2);
+                            strcpy(tipo, tok2);
+                            if(strcmp(tipo,"G")==0){
+                                tok2 = strtok_r(nullptr, ",", &final2);
+                                listaGrupo.push_back(tok2);
+                            }
+                        }
+                        tok = strtok_r(nullptr, "\n", &final1);
+                    }
                     if(resultado == 1){
                         comprobarLogin = true;
                         printf("Usuario logeado correctamente\n");
@@ -341,7 +250,46 @@ void login::Login(login *usuario){
                             fclose(archivo);
                             inicio.start_super = Extendida.e_comienzo;
                             int resultado = Logeando(usuario->user,usuario->pwd,aux->ruta);
-                            generarListaGrupo(aux->ruta);
+                            listaGrupo.clear();
+                            FILE *archivo = fopen(aux->ruta.c_str(), "rb+");
+                            SuperBloque superaux;
+                            TablaInodo inodoaux;
+                            char usuarios[400] = "\0";
+                            fseek(archivo, inicio.start_super, SEEK_SET);
+                            fread(&superaux, sizeof(SuperBloque), 1, archivo);
+                            fseek(archivo, superaux.s_inodo_init+int(sizeof(TablaInodo)), SEEK_SET);
+                            fread(&inodoaux, sizeof(TablaInodo), 1, archivo);
+                            for (int i = 0; i < 15; i++) {
+                                if(inodoaux.i_bloque[i]!=-1){
+                                    BloqueArchivo blockfile;
+                                    fseek(archivo, superaux.s_bloque_init, SEEK_SET);
+                                    for (int x = 0; x <= inodoaux.i_bloque[i]; x++) {
+                                        fread(&blockfile, 64, 1, archivo);
+
+                                    }
+                                    strcat(usuarios, blockfile.b_archivo);
+                                }
+                            }
+                            fclose(archivo);
+                            char *final1;
+                            char *tok = strtok_r(usuarios,"\n", &final1);
+
+                            while(tok != nullptr){
+                                char id[2];
+                                char tipo[2];
+                                char *final2;
+                                char *tok2 = strtok_r(tok, ",", &final2);
+                                strcpy(id, tok2);
+                                if (strcmp(id,"0")!=0){
+                                    tok2 = strtok_r(nullptr, ",", &final2);
+                                    strcpy(tipo, tok2);
+                                    if(strcmp(tipo,"G")==0){
+                                        tok2 = strtok_r(nullptr, ",", &final2);
+                                        listaGrupo.push_back(tok2);
+                                    }
+                                }
+                                tok = strtok_r(nullptr, "\n", &final1);
+                            }
                             if(resultado == 1){
                                 printf("Usuario logeado correctamente\n");
                             }else if (resultado ==2){

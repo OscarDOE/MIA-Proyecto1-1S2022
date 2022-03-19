@@ -1,0 +1,130 @@
+
+Mkdisk -size=50 -unit=M -path=/home/oscar/Descargas/Disco1.disk -fit=FF
+Mkdisk -unit=k -size=51200 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+mkDisk -size=10 -path=/home/oscar/Descargas/Disco3.disk
+mkdisk -size=51200 -path="/home/oscar/Descargas/Disco4.disk" -unit=K
+mkDisk -size=20 -path="/home/oscar/Descargas/Disco5.disk" -unit=M -fit=WF
+
+
+pause
+rmDisk -path=/home/Disco3.disk
+rmDisk -path=/home/oscar/Descargas/Disco3.disk
+RMDISK -path="/home/oscar/Descargas/Disco4.disk"
+
+pause
+fdisk -type=P -unit=K -name=Part1 -size=7680 -path=/home/oscar/Descargas/Disco1.disk -fit=BF 
+pause
+fdisk -type=E -unit=K -name=Part2 -size=7680 -path=/home/oscar/Descargas/Disco1.disk -fit=FF
+fdisk -type=E -unit=K -name=Part3 -size=7680 -path=/home/oscar/Descargas/Disco1.disk -fit=WF 
+pause
+fdisk -type=P -unit=K -name=Part3 -size=7680 -path=/home/oscar/Descargas/Disco1.disk -fit=WF
+fdisk -type=P -unit=K -name=Part4 -size=7680 -path=/home/oscar/Descargas/Disco1.disk -fit=BF
+FDISK -type=L -unit=k -name=Part5 -size=1280 -path=/home/oscar/Descargas/Disco1.disk -fit=BF 
+pause
+fdisk -type=L -unit=K -name=Part6 -size=1280 -path=/home/oscar/Descargas/Disco1.disk -fit=WF
+fdisk -type=L -unit=K -name=Part7 -size=1280 -path=/home/oscar/Descargas/Disco1.disk -fit=wf
+fdisk -type=L -unit=K -name=Part8 -size=1280 -path=/home/oscar/Descargas/Disco1.disk -fit=ff
+fdisk -type=L -unit=K -name=Part9 -size=1280 -path=/home/oscar/Descargas/Disco1.disk -fit=bf
+fdisk -type=L -unit=K -name=Part10 -size=1280 -path=/home/oscar/Descargas/Disco1.disk -fit=wf
+fdisk -type=L -unit=K -name=Part10 -size=1024 -path=/home/oscar/Descargas/Disco1.disk -fit=BF 
+pause
+
+fdisk -type=L -unit=k -name=Part11 -size=10240 -path=/home/oscar/Descargas/Disco2.disk -fit=BF 
+pause
+fdisk -type=L -unit=k -name=Part12 -size=10240 -path=/home/oscar/Descargas/Disco2.disk -fit=BF 
+pause
+fDisk -type=P -unit=K -name=Part11 -size=10240 -path=/home/oscar/Descargas/Disco2.disk -fit=BF 
+pause
+fDisk -type=P -unit=m -name=Part12 -size=5 -path=/home/oscar/Descargas/Disco2.disk -fit=FF
+fDisk -type=P -unit=K -name=Part13 -size=5120 -path=/home/oscar/Descargas/Disco2.disk -fit=WF 
+pause
+fdisk -type=E -unit=m -name=Part14 -size=20 -path=/home/oscar/Descargas/Disco2.disk 
+fdisk -type=L -unit=k -name=Part15 -size=1536 -path=/home/oscar/Descargas/Disco2.disk 
+fdisk -type=L -unit=k -name=Part16 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+fdisk -type=L -unit=k -name=Part17 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=FF
+fdisk -type=L -unit=k -name=Part18 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+fdisk -type=L -unit=k -name=Part19 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=WF
+fdisk -type=L -unit=k -name=Part20 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+fdisk -type=L -unit=k -name=Part21 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=FF
+fdisk -type=L -unit=k -name=Part22 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+fdisk -type=L -unit=k -name=Part23 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=FF
+fdisk -type=L -unit=k -name=Part24 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+fdisk -type=L -unit=k -name=Part25 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=wF
+fdisk -type=L -unit=k -name=Part26 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=BF
+fdisk -type=L -unit=k -name=Part27 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=FF
+fdisk -type=L -unit=k -name=Part28 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=FF
+fdisk -type=L -unit=k -name=Part29 -size=1536 -path=/home/oscar/Descargas/Disco2.disk -fit=wF
+
+pause
+fdisk -type=E -unit=k -name=Part30 -size=5120 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF 
+pause
+fdisk -type=L -unit=k -name=Part31 -size=1024 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF
+fdisk -type=P -unit=k -name=Part32 -size=5120 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF
+fdisk -type=L -unit=k -name=Part33 -size=1024 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF
+fdisk -type=P -unit=k -name=Part34 -size=5120 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF
+fdisk -type=P -unit=k -name=Part35 -size=5120 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF
+fdisk -type=L -unit=k -name=Part36 -size=1024 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF
+fdisk -type=L -unit=k -name=Part37 -size=1024 -path="/home/oscar/Descargas/Disco5.disk" -fit=BF
+
+pause
+fdisk -delete=fast -name=Part1 -path=/home/oscar/Descargas/Disco1.disk
+fdisk -delete=fast -name=Part6 -path=/home/oscar/Descargas/Disco1.disk
+fdisk -delete=fast -name=Part10 -path=/home/oscar/Descargas/Disco1.disk
+fdisk -delete=fast -name=Part9 -path=/home/oscar/Descargas/Disco1.disk
+pause
+fdisk -add=500 -unit=K -path=/home/oscar/Descargas/Disco1.disk -name=Part4
+
+pause
+fdisk -delete=fast -name=Part13 -path=/home/oscar/Descargas/Disco2.disk
+fdisk -add=1 -unit=m -path=/home/oscar/Descargas/Disco2.disk -name=Part12
+
+pause
+mount -path=/home/oscar/Descargas/Disco3.disk -name=Part3 
+pause
+mount -path=/home/oscar/Descargas/Disco1.disk -name=Part2
+pause
+mount -path=/home/oscar/Descargas/Disco1.disk -name=Part3
+pause
+mount -path=/home/oscar/Descargas/Disco1.disk -name=Part4 
+pause
+mount -path=/home/oscar/Descargas/Disco1.disk -name=Part5 
+pause
+mount -path=/home/oscar/Descargas/Disco1.disk -name=Part7 
+pause
+mount -path=/home/oscar/Descargas/Disco2.disk -name=Part14 
+pause
+mount -path=/home/oscar/Descargas/Disco2.disk -name=Part15 
+pause
+mount -path=/home/oscar/Descargas/Disco2.disk -name=Part16 
+pause
+mount -path=/home/oscar/Descargas/Disco2.disk -name=Part17 
+pause
+mount -path="/home/oscar/Descargas/Disco5.disk" -name=Part30 
+pause
+mount -path="/home/oscar/Descargas/Disco5.disk" -name=Part31 
+pause
+mount -path="/home/oscar/Descargas/Disco5.disk" -name=Part32
+pause
+
+umount -id=631c
+umount -id=631e
+mkfs -id=632d
+umount -id=633b
+umount -id=631x
+
+
+pause 
+
+rep -id=631c -path=/home/oscar/reports/prueba.jpg -name=disk
+rep -id=631a -path=/home/oscar/reports/reporte1.jpg -name=disk
+mkfs -id=631A
+rep -id=631a -path=/home/oscar/reports/reporte2.jpg -name=mbr
+rep -id=632a -path=/home/oscar/reports/reporte3.jpg -name=disk
+rep -id=632a -Path=/home/oscar/reports/reporte4.jpg -name=mbr
+rep -id=633a -Path=/home/oscar/reports/reporte5.jpg -name=disk
+rep -id=633a -path=/home/oscar/reports/reporte6.jpg -name=mbr
+rep -id=633a -path=/home/oscar/reports/reporte7.jpg -name=tree
+rep -id=633a -path=/home/oscar/reports/reporte8.jpg -name=inode
+rep -id=633a -path=/home/oscar/reports/reporte9.jpg -name=file
+rep -id=633a -path=/home/oscar/reports/reporte10.jpg -name=block
+rep -id=633a -path=/home/oscar/reports/reporte611jpg -name=sb

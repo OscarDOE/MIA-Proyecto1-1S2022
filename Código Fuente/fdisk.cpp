@@ -13,73 +13,6 @@ fdisk::fdisk()
 }
 
 
-
-int buscParticion(string nombre, string ruta){
-    FILE *archivo;
-    Disco master;
-    if(archivo = fopen(ruta.c_str(),"rb+")){
-        int NParticionE = -1;
-        fseek(archivo, 0, SEEK_SET);
-        fread(&master, sizeof(Disco), 1, archivo);
-        for (int i = 0; i < 4; i++) {
-            if (master.particiones[i].p_type == 'E'){
-                NParticionE = i;
-                break;
-            }
-        }
-        if(NParticionE != -1){
-            ext Extendida;
-            fseek(archivo, master.particiones[NParticionE].p_comienzo, SEEK_SET);
-            fread(&Extendida, sizeof(ext), 1 , archivo);
-            while ((ftell(archivo)<master.particiones[NParticionE].p_tam + master.particiones[NParticionE].p_comienzo)) {
-                if (strcmp(Extendida.e_nombre,nombre.c_str())==0){
-                    //cout<<Extendida.e_comienzo;
-                    return (ftell(archivo)-sizeof(ext));
-                }
-                if(Extendida.e_siguiente == -1){
-                    break;
-                }
-                fseek(archivo, Extendida.e_siguiente, SEEK_SET);
-                fread(&Extendida, sizeof(ext), 1 , archivo);
-            }
-        }
-        fclose(archivo);
-    }
-    return -1;
-}
-
-int tamLogica(string nombre, string ruta){
-    FILE *archivo;
-    Disco master;
-    if(archivo = fopen(ruta.c_str(),"rb+")){
-        int NParticionE = -1;
-        fseek(archivo, 0, SEEK_SET);
-        fread(&master, sizeof(Disco), 1, archivo);
-        for (int i = 0; i < 4; i++) {
-            if (master.particiones[i].p_type == 'E'){
-                NParticionE = i;
-                break;
-            }
-        }
-        if(NParticionE != -1){
-            ext Extendida;
-            int tam =0;
-            fseek(archivo, master.particiones[NParticionE].p_comienzo, SEEK_SET);
-            fread(&Extendida, sizeof(ext), 1 , archivo);
-            while ((ftell(archivo)<master.particiones[NParticionE].p_tam + master.particiones[NParticionE].p_comienzo)) {
-                tam += Extendida.e_tam;
-                if(Extendida.e_siguiente == -1){
-                    return tam;
-                }
-                fseek(archivo, Extendida.e_siguiente, SEEK_SET);
-                fread(&Extendida, sizeof(ext), 1 , archivo);
-            }
-        }
-        fclose(archivo);
-    }
-    return -1;
-}
-
 bool existeParticion(string ruta, string nombre){
     FILE *archivo;
     int extendida = -1;
@@ -773,8 +706,69 @@ void AgregarParticion(string ruta, string nombre, int sizebyte){
                 }
             }else{
                 if(NParticionE != -1){
-                    int buscar = buscParticion(nombre, ruta);
-                    int total = tamLogica(nombre, ruta);
+                    int buscar = -1;
+                    FILE *archivoa;
+                    Disco master2;
+                    if(archivoa = fopen(ruta.c_str(),"rb+")){
+                        int NParticionE = -1;
+                        fseek(archivoa, 0, SEEK_SET);
+                        fread(&master2, sizeof(Disco), 1, archivoa);
+                        for (int i = 0; i < 4; i++) {
+                            if (master2.particiones[i].p_type == 'E'){
+                                NParticionE = i;
+                                break;
+                            }
+                        }
+                        if(NParticionE != -1){
+                            ext Extendida;
+                            fseek(archivoa, master2.particiones[NParticionE].p_comienzo, SEEK_SET);
+                            fread(&Extendida, sizeof(ext), 1 , archivoa);
+                            while ((ftell(archivoa)<master2.particiones[NParticionE].p_tam + master2.particiones[NParticionE].p_comienzo)) {
+                                if (strcmp(Extendida.e_nombre,nombre.c_str())==0){
+                                    //cout<<Extendida.e_comienzo;
+                                    buscar = (ftell(archivoa)-sizeof(ext));
+                                }
+                                if(Extendida.e_siguiente == -1){
+                                    break;
+                                }
+                                fseek(archivoa, Extendida.e_siguiente, SEEK_SET);
+                                fread(&Extendida, sizeof(ext), 1 , archivoa);
+                            }
+                        }
+                        fclose(archivoa);
+                    }
+
+                    //int total = tamLogica(nombre, ruta);
+                    int total = -1;
+                    FILE *archivob;
+                    Disco master3;
+                    if(archivob = fopen(ruta.c_str(),"rb+")){
+                        int NParticionE = -1;
+                        fseek(archivob, 0, SEEK_SET);
+                        fread(&master3, sizeof(Disco), 1, archivob);
+                        for (int i = 0; i < 4; i++) {
+                            if (master3.particiones[i].p_type == 'E'){
+                                NParticionE = i;
+                                break;
+                            }
+                        }
+                        if(NParticionE != -1){
+                            ext Extendida;
+                            int tam =0;
+                            fseek(archivob, master3.particiones[NParticionE].p_comienzo, SEEK_SET);
+                            fread(&Extendida, sizeof(ext), 1 , archivob);
+                            while ((ftell(archivob)<master3.particiones[NParticionE].p_tam + master3.particiones[NParticionE].p_comienzo)) {
+                                tam += Extendida.e_tam;
+                                if(Extendida.e_siguiente == -1){
+                                    total = tam;
+                                }
+                                fseek(archivob, Extendida.e_siguiente, SEEK_SET);
+                                fread(&Extendida, sizeof(ext), 1 , archivob);
+                            }
+                        }
+                        fclose(archivob);
+                    }
+
                     if(buscar != -1){
                         if (tipo == "agregar"){
                             ext Extendida;

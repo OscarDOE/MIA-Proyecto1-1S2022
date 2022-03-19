@@ -24,47 +24,6 @@ bool ListaMontado(string ruta, string nombre){
     return false;
 }
 
-
-int buscarLetra(listaMount *list, string nombre, string ruta){
-    int busqueda= 'a';
-    nodoMount *aux = list->primero;
-    while(aux !=nullptr){
-        if((aux->nombre==nombre)&&(aux->ruta==ruta)){
-            return -1;
-        }else{
-            if(aux->ruta==ruta){
-                busqueda = (aux->letra)+1;
-            }
-        }
-        aux = aux->sig;
-    }
-    return busqueda;
-}
-
-int buscarNumero(listaMount *list, string nombre, string ruta){
-    int busqueda= 1;
-    nodoMount *aux = list->primero;
-    while(aux !=nullptr){
-        if (aux->ruta == ruta){
-            return aux->numero;
-        }else if (aux->ruta != ruta && aux->numero == busqueda){
-            busqueda++;
-        }
-        aux=aux->sig;
-    }
-    return busqueda;
-}
-
-void mostrarList(listaMount *list){
-    nodoMount *aux = list->primero;
-    while(aux != nullptr){
-        cout<<aux->ruta<<"|"<<aux->nombre<<"|"<<aux->id<<"\n";
-        aux = aux->sig;
-        //aux = aux->siguiente;
-    }
-}
-
-
 void mount:: MontarParticion(mount *montar){
     string aux = (montar->ruta).substr(0, (montar->ruta).size()-1);
     char ca1 = aux.back();
@@ -125,21 +84,64 @@ void mount:: MontarParticion(mount *montar){
                     if(ListaM->primero == nullptr ){
                         nodoMount *nuevo = new nodoMount("631a", montar->ruta, montar->nombre, 1, 'a');
                         ListaM->primero = nuevo;
-                        mostrarList(ListaM);
+                        nodoMount *aux3 = ListaM->primero;
+                        while(aux3 != nullptr){
+                            cout<<aux3->ruta<<"|"<<aux3->nombre<<"|"<<aux3->id<<"\n";
+                            aux3 = aux3->sig;
+                            //aux = aux->siguiente;
+                        }
                     }else{
                         nodoMount *nuevo = ListaM->primero;
                         while(nuevo->sig != nullptr){
                             nuevo = nuevo->sig;
                         }
 
-                        int letra = buscarLetra(ListaM,montar->nombre, montar->ruta);
+                        int letra = -1;
+                        bool falg = true;
+                        int busqueda= 'a';
+                        nodoMount *aux = ListaM->primero;
+                        while(aux !=nullptr){
+                            if((aux->nombre==nombre)&&(aux->ruta==ruta)){
+                                letra= -1;
+                                falg = false;
+                            }else{
+                                if(aux->ruta==ruta){
+                                    busqueda = (aux->letra)+1;
+                                }
+                            }
+                            aux = aux->sig;
+                        }
+                        if(falg){
+                            letra = busqueda;
+                        }
+
                         if (letra != -1){
-                            int num = buscarNumero(ListaM,montar->nombre, montar->ruta);
+                            int num = -1;
+                            bool falg2 = true;
+                            int busqueda2= 1;
+                            nodoMount *aux = ListaM->primero;
+                            while(aux !=nullptr){
+                                if (aux->ruta == ruta){
+                                    num = aux->numero;
+                                    falg2 = false;
+                                }else if (aux->ruta != ruta && aux->numero == busqueda2){
+                                    busqueda2++;
+                                }
+                                aux=aux->sig;
+                            }
+                            if(falg2){
+                                num = busqueda2;
+                            }
                             char letraC = static_cast<char>(letra);
                             string id = "63" + to_string(num)+ letraC;
                             nodoMount *aux1 = new nodoMount(id, montar->ruta, montar->nombre, num, letraC);
                             nuevo->sig = aux1;
-                            mostrarList(ListaM);
+                            nodoMount *aux3 = ListaM->primero;
+                            while(aux3 != nullptr){
+                                cout<<aux3->ruta<<"|"<<aux3->nombre<<"|"<<aux3->id<<"\n";
+                                aux3 = aux3->sig;
+                                //aux = aux->siguiente;
+                            }
                         }else{
                             printf("La particion ya esta montada\n");
                         }
@@ -173,21 +175,65 @@ void mount:: MontarParticion(mount *montar){
                             if(ListaM->primero == nullptr ){
                                 nodoMount *nuevo = new nodoMount("631a", montar->ruta, montar->nombre, 1, 'a');
                                 ListaM->primero = nuevo;
-                                mostrarList(ListaM);
+                                nodoMount *aux3 = ListaM->primero;
+                                while(aux3 != nullptr){
+                                    cout<<aux3->ruta<<"|"<<aux3->nombre<<"|"<<aux3->id<<"\n";
+                                    aux3 = aux3->sig;
+                                    //aux = aux->siguiente;
+                                }
+
                             }else{
                                 nodoMount *nuevo = ListaM->primero;
                                 while(nuevo->sig != nullptr){
                                     nuevo = nuevo->sig;
                                 }
 
-                                int letra = buscarLetra(ListaM,montar->nombre, montar->ruta);
+                                int letra = -1;
+                                bool falg = true;
+                                int busqueda= 'a';
+                                nodoMount *aux = ListaM->primero;
+                                while(aux !=nullptr){
+                                    if((aux->nombre==nombre)&&(aux->ruta==ruta)){
+                                        letra= -1;
+                                        falg = false;
+                                    }else{
+                                        if(aux->ruta==ruta){
+                                            busqueda = (aux->letra)+1;
+                                        }
+                                    }
+                                    aux = aux->sig;
+                                }
+                                if(falg){
+                                    letra = busqueda;
+                                }
+
                                 if (letra != -1){
-                                    int num = buscarNumero(ListaM,montar->nombre, montar->ruta);
+                                    int num = -1;
+                                    bool falg2 = true;
+                                    int busqueda2= 1;
+                                    nodoMount *aux = ListaM->primero;
+                                    while(aux !=nullptr){
+                                        if (aux->ruta == ruta){
+                                            num = aux->numero;
+                                            falg2 = false;
+                                        }else if (aux->ruta != ruta && aux->numero == busqueda2){
+                                            busqueda2++;
+                                        }
+                                        aux=aux->sig;
+                                    }
+                                    if(falg2){
+                                        num = busqueda2;
+                                    }
                                     char letraC = static_cast<char>(letra);
                                     string id = "63" + to_string(num)+ letraC;
                                     nodoMount *aux1 = new nodoMount(id, montar->ruta, montar->nombre, num, letraC);
                                     nuevo->sig = aux1;
-                                    mostrarList(ListaM);
+                                    nodoMount *aux2 = ListaM->primero;
+                                    while(aux2 != nullptr){
+                                        cout<<aux2->ruta<<"|"<<aux2->nombre<<"|"<<aux2->id<<"\n";
+                                        aux2 = aux2->sig;
+                                        //aux = aux->siguiente;
+                                    }
                                 }else{
                                     printf("La particion ya esta montada\n");
                                 }
